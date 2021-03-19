@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+	<class name="datos.Inspeccion" table="inspeccion">
+	    <id column="idInspeccion" name="idInspeccion">
+	      <generator class="identity"/>
+	    </id>
+	    <property column="fecha" name="fecha" type="LocalDate"/>
+	    <property column="estadoPagado" name="estadoPagado" type="boolean"/>
+	    <property column="estado" name="estado" type="string"/>
+	    
+	    
+	    <!-- Relacion con automotor -->
+	    <many-to-one name="automotor" class="datos.Automotor"
+            column="idAutomotor" not-null="true"/>
+            
+            
+         <!--  Relacion con inspector -->  
+        <many-to-one name="inspector" class="datos.Inspector"
+            column="idInspector" not-null="true"/>
+            
+            
+            
+            
+	</class> 
+</hibernate-mapping>

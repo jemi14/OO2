@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name = "datos.Persona" table = "persona" >
+<id column = "idPersona" name = "idPersona" >
+<generator class = "identity" />
+</id>
+
+<property name = "nroCuenta" column = "nroCuenta" type = "string" />
+
+<set name = "rodados" table = "rodado" order-by = "idRodado asc" inverse = "true"
+lazy = "true" fetch = "select" >
+<key column = "idPersona" not-null = "true" />
+<one-to-many class = "datos.Rodado" />
+</set >
+
+<joined-subclass name = "datos.Empresa" table = "empresa" >
+<key column = "idEmpresa" />
+<property column = "razonSocial" name = "razonSocial" type = "string" />
+</joined-subclass>
+
+<joined-subclass name = "datos.Abonado" table = "abonado" >
+<key column = "idAbonado" />
+<property column = "apellido" name = "apellido" type = "string" />
+<property column = "nombres" name = "nombres" type = "string" />
+<property column = "dni" name = "dni" type = "int" />
+</joined-subclass>
+
+
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="datos.Butaca" table="butaca">
+
+		<id column="idButaca" name="idButaca">
+			<generator class="identity" />
+		</id>
+
+		<property column="butaca" name="butaca" type="string" />
+		<property column="precio" name="precio" type="double" />
+		<property column="libre" name="libre" type="boolean" />
+
+		<many-to-one name="funcion" class="datos.Funcion" lazy="false"
+			column="idFuncion" not-null="true" />
+
+
+	</class>
+</hibernate-mapping>

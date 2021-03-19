@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="datos.Telepeaje" table="telepeaje">
+
+		<id column="idTelepeaje" name="idTelepeaje">
+			<generator class="identity" />
+		</id>
+
+		<property column="fecha" name="fecha" type="LocalDate" />
+		<property column="hora" name="hora" type="LocalTime" />
+		<property column="precio" name="precio" type="float" />
+
+		<many-to-one name="rodado" class="datos.Rodado" lazy="false"
+			column="idRodado" not-null="true" />
+
+
+	</class>
+</hibernate-mapping>

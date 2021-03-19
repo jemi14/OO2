@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+
+<class name = "datos.Persona" table = "persona" >
+<id column = "idPersona" name = "idPersona" >
+<generator class = "identity" />
+</id>
+
+<property name = "apellido" column = "apellido" type = "string" />
+<property name = "nombres" column = "nombres" type = "string" />
+<property name = "dni" column = "dni" type = "int" />
+
+
+<!-- HIJO  -->
+<joined-subclass name = "datos.Inspector" table = "inspector" >
+<key column = "idInspector" />
+
+<property column = "legajo" name = "legajo" type = "int" />
+
+
+
+	<set name="inspecciones" table="inspeccion" order-by="idInspeccion asc"
+			inverse="true" lazy="true" fetch="select">
+			<!-- TAL VEZ idInspector es mejor -->
+			<key column="idPersona" not-null="true" />
+			<one-to-many class="datos.Inspeccion" />
+		</set>
+
+
+
+
+</joined-subclass>
+
+
+<!-- HIJO  -->
+<joined-subclass name = "datos.Contribuyente" table = "contribuyente" >
+<key column = "idContribuyente" />
+
+
+<property column = "esExcento" name = "esExcento" type = "boolean" />
+
+
+
+	<set name="automotores" table="automotor" order-by="idAutomotor asc"
+			inverse="true" lazy="true" fetch="select">
+			<!-- TAL VEZ idContribuyenter es mejor -->
+			<key column="idPersona" not-null="true" />
+			<one-to-many class="datos.Automotor" />
+		</set>
+
+
+
+</joined-subclass>
+
+
+
+</class>
+</hibernate-mapping>
